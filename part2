@@ -1,0 +1,53 @@
+#!/bin/bash
+
+# Setting up timezone
+ln -sf /usr/share/zoneinfo/Europe/Stockholm /etc/localtime
+hwclock --systohc
+
+# Setting up locale
+echo sv_SE.UTF-8 UTF-8 >> /etc/locale.gen
+echo en_US.UTF-8 UTF-8 >> /etc/locale.gen
+locale-gen
+echo LANG=sv_SE.UTF-8 >> /etc/locale.conf
+echo KEYMAP=sv-latin1 >> /etc/vconsole.conf
+
+# Setting up /etc/hostname
+echo arch-workstation >> /etc/hostname
+echo 127.0.0.1	localhost >> /etc/hosts
+echo ::1		    localhost >> /etc/hosts
+echo 127.0.1.1  arch-workstation >> /etc/hosts
+
+# Starting installation 
+pacman -Syy
+pacman-key --populate archlinux
+passwd
+
+# KDE Applications
+#pacman -S grub efibootmgr xorg xorg-server sddm plasma networkmanager kcalc konsole kate gwenview dolphin kpmcore xdg-user-dirs sudo fuse libreoffice-fresh-sv firefox gparted lutris wine wine-gecko wine-mono winetricks vlc qbittorrent ark p7zip unrar unarchiver lzop lrzip htop neofetch nvidia nvidia-utils nvidia-settings steam os-prober opencl-nvidia fish
+#
+# Gnome Applications
+#pacman -S grub efibootmgr xorg xorg-server gdm gnome networkmanager xdg-user-dirs sudo gnome-terminal fuse libreoffice-fresh-sv firefox gparted gnome-disk-utility qbittorrent lutris wine wine-gecko wine-mono winetricks vlc neofetch nvidia nvidia-utils nvidia-settings steam os-prober opencl-nvidia fish
+#
+# XFCE4 Applications
+#pacman -S grub efibootmgr xorg xorg-server lightdm lightdm-gtk-greeter xfce4 xfce4-goodies networkmanager network-manager-applet xdg-user-dirs sudo fuse libreoffice-fresh-sv firefox gparted gnome-disk-utility qbittorrent htop neofetch nvidia nvidia-utils nvidia-settings steam os-prober opencl-nvidia fish
+#
+# Cinnamon Applications
+#pacman -S grub efibootmgr xorg xorg-server gdm cinnamon networkmanager xdg-user-dirs sudo fuse gnome-terminal xed xreader libreoffice-fresh-sv firefox gparted gnome-disk-utility qbittorrent htop neofetch nvidia nvidia-utils nvidia-settings steam os-prober opencl-nvidia fish
+# Preparing boot partition and installing grub
+mkdir /boot/efi
+mount /dev/nvme0n1p1 /boot/efi
+grub-install --target=x86_64-efi --bootloader-id=Arch --efi-directory=/boot/efi
+grub-mkconfig -o /boot/grub/grub.cfg
+
+# Enabling Services and adding accounts
+#systemctl enable sddm.service
+#systemctl enable gdm.service
+#systemctl enable lightdm.service
+systemctl enable NetworkManager
+useradd -m modda
+passwd modda
+xdg-user-dirs-update
+EDITOR=nano visudo
+mv /moddas /home/modda/moddas
+cd /home/modda
+su modda
