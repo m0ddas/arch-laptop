@@ -17,6 +17,9 @@ echo 127.0.0.1	localhost >> /etc/hosts
 echo ::1		    localhost >> /etc/hosts
 echo 127.0.1.1  arch-workstation >> /etc/hosts
 
+#Running reflector and updating mirrorlist
+reflector -f 12 -l 12 -n 12 > /etc/pacman.d/mirrorlist
+
 # Starting installation 
 pacman -Syy
 pacman-key --populate archlinux
