@@ -14,6 +14,6 @@ makepkg -si
 yay -Syy
 curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | gpg --import -
 yay -S spotify steam-fonts optimus-manager-qt-git
-systemctl enable optimus-manager.service
+sudo systemctl enable optimus-manager.service
 chsh -s /usr/bin/fish
 sudo chsh -s /usr/bin/fish
