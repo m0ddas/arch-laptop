@@ -26,16 +26,20 @@ pacman-key --populate archlinux
 passwd
 
 # KDE Applications
-#pacman -S grub efibootmgr xorg xorg-server sddm plasma networkmanager kcalc konsole kate gwenview dolphin kpmcore xdg-user-dirs sudo fuse libreoffice-fresh-sv firefox gparted lutris wine wine-gecko wine-mono winetricks vlc qbittorrent ark p7zip unrar unarchiver lzop lrzip htop neofetch nvidia nvidia-utils nvidia-settings steam os-prober opencl-nvidia fish
+#pacman -S grub efibootmgr xorg xorg-server sddm plasma networkmanager kcalc konsole kate gwenview dolphin kpmcore xdg-user-dirs sudo ark p7zip unrar unarchiver lzop lrzip 
 #
 # Gnome Applications
-#pacman -S grub efibootmgr xorg xorg-server gdm gnome networkmanager xdg-user-dirs sudo gnome-terminal fuse libreoffice-fresh-sv firefox gparted gnome-disk-utility qbittorrent lutris wine wine-gecko wine-mono winetricks vlc neofetch nvidia nvidia-utils nvidia-settings steam os-prober opencl-nvidia fish
+#pacman -S grub efibootmgr xorg xorg-server gdm gnome networkmanager xdg-user-dirs sudo gnome-terminal gnome-disk-utility
 #
 # XFCE4 Applications
-#pacman -S grub efibootmgr xorg xorg-server lightdm lightdm-gtk-greeter xfce4 xfce4-goodies networkmanager network-manager-applet xdg-user-dirs sudo fuse libreoffice-fresh-sv firefox gparted gnome-disk-utility qbittorrent htop neofetch nvidia nvidia-utils nvidia-settings steam os-prober opencl-nvidia fish
+#pacman -S grub efibootmgr xorg xorg-server lightdm lightdm-gtk-greeter xfce4 xfce4-goodies networkmanager network-manager-applet xdg-user-dirs sudo gnome-disk-utility
 #
 # Cinnamon Applications
-#pacman -S grub efibootmgr xorg xorg-server gdm cinnamon networkmanager xdg-user-dirs sudo fuse gnome-terminal xed xreader libreoffice-fresh-sv firefox gparted gnome-disk-utility qbittorrent htop neofetch nvidia nvidia-utils nvidia-settings steam os-prober opencl-nvidia fish
+#pacman -S grub efibootmgr xorg xorg-server gdm cinnamon networkmanager xdg-user-dirs sudo gnome-terminal xed xreader gnome-disk-utility
+
+# Installing applications
+pacman -S fuse libreoffice-fresh-sv firefox gparted lutris wine wine-gecko wine-mono winetricks vlc qbittorrent htop neofetch nvidia nvidia-utils nvidia-settings steam os-prober opencl-nvidia fish
+
 # Preparing boot partition and installing grub
 mkdir /boot/efi
 mount /dev/nvme0n1p1 /boot/efi
