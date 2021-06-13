@@ -25,16 +25,18 @@ pacman -Syy
 pacman-key --populate archlinux
 passwd
 
-# KDE Applications
+# Select desktop environment
+
+# KDE with minimal applications
 #pacman -S grub efibootmgr xorg xorg-server sddm plasma networkmanager kcalc konsole kate gwenview dolphin kpmcore xdg-user-dirs sudo ark p7zip unrar unarchiver lzop lrzip 
-#
-# Gnome Applications
-#pacman -S grub efibootmgr xorg xorg-server gdm gnome networkmanager xdg-user-dirs sudo gnome-terminal gnome-disk-utility
-#
-# XFCE4 Applications
+
+# Gnome with minimal applications
+#pacman -S grub efibootmgr xorg xorg-server gdm gnome networkmanager xdg-user-dirs sudo gnome-terminal gnome-disk-utility gnome-tweaks
+
+# XFCE4 with standard applications
 #pacman -S grub efibootmgr xorg xorg-server lightdm lightdm-gtk-greeter xfce4 xfce4-goodies networkmanager network-manager-applet xdg-user-dirs sudo gnome-disk-utility
-#
-# Cinnamon Applications
+
+# Cinnamon with minimal applications
 #pacman -S grub efibootmgr xorg xorg-server gdm cinnamon networkmanager xdg-user-dirs sudo gnome-terminal xed xreader gnome-disk-utility
 
 # Installing applications
