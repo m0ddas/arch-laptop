@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Setting up pacman.conf
+nano /etc/pacman.conf
+
 # Setting up timezone
 ln -sf /usr/share/zoneinfo/Europe/Stockholm /etc/localtime
 hwclock --systohc
@@ -20,7 +23,7 @@ echo 127.0.1.1  arch-workstation >> /etc/hosts
 #Running reflector and updating mirrorlist
 reflector -f 25 -l 25 -n 25 > /etc/pacman.d/mirrorlist
 
-# Starting installation 
+# Starting installation
 pacman -Syy
 pacman-key --populate archlinux
 passwd
@@ -57,6 +60,6 @@ useradd -m modda
 passwd modda
 xdg-user-dirs-update
 EDITOR=nano visudo
-mv /moddas /home/modda/moddas
+mv /user /home/modda/user
 cd /home/modda
 su modda
