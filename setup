@@ -8,15 +8,15 @@ mkfs.ext4 /dev/nvme0n1p3
 # Mounting root partition
 mount /dev/nvme0n1p3 /mnt
 
+# Setting up pacman.conf
+nano /etc/pacman.conf
+
 # Updating pacman
 pacman -Syy
 
 # Installing and running reflector
 pacman -S reflector
 reflector -f 12 -l 12 -n 12 > /etc/pacman.d/mirrorlist
-
-# Setting up pacman.conf
-nano /etc/pacman.conf
 
 # Downloading base for install
 pacstrap /mnt base base-devel linux linux-firmware nano reflector
@@ -25,8 +25,8 @@ pacstrap /mnt base base-devel linux linux-firmware nano reflector
 genfstab -U /mnt >> /mnt/etc/fstab
 
 # Moving configuration files to new system
-mv part2 /mnt
-mv moddas /mnt
+mv install /mnt
+mv user /mnt
 
 # Chroot into new system
 arch-chroot /mnt
