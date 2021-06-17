@@ -58,7 +58,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 systemctl enable NetworkManager
 useradd -m modda
 passwd modda
-xdg-user-dirs-update
+#xdg-user-dirs-update
 EDITOR=nano visudo
 mv /user /home/modda/user
 cd /home/modda
