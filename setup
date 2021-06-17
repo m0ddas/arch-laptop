@@ -4,9 +4,12 @@ mkfs.fat -F32 /dev/nvme0n1p1
 mkswap /dev/nvme0n1p2
 swapon /dev/nvme0n1p2
 mkfs.ext4 /dev/nvme0n1p3
+#mkfs.ext4 /dev/nvme1n1p1
 
-# Mounting root partition
+# Mounting root partition and home folder
 mount /dev/nvme0n1p3 /mnt
+mkdir /mnt/home
+mount /dev/nvme1n1p1 /mnt/home
 
 # Setting up pacman.conf
 nano /etc/pacman.conf
