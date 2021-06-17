@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Setting up pacman.conf
 nano /etc/pacman.conf
 
