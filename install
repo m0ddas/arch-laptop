@@ -30,7 +30,7 @@ passwd
 # Select desktop environment
 
 # KDE with minimal applications
-#pacman -S grub efibootmgr xorg xorg-server sddm plasma networkmanager kcalc konsole kate gwenview dolphin kpmcore xdg-user-dirs sudo ark p7zip unrar unarchiver lzop lrzip 
+#pacman -S grub efibootmgr xorg xorg-server sddm plasma networkmanager kcalc konsole kate gwenview dolphin kpmcore xdg-user-dirs sudo ark p7zip unrar unarchiver lzop lrzip partitionmanager
 
 # Gnome with minimal applications
 #pacman -S grub efibootmgr xorg xorg-server gdm gnome networkmanager xdg-user-dirs sudo gnome-terminal gnome-disk-utility gnome-tweaks
