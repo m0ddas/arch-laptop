@@ -4,7 +4,7 @@ mkfs.fat -F32 /dev/nvme0n1p1
 mkswap /dev/nvme0n1p2
 swapon /dev/nvme0n1p2
 mkfs.ext4 /dev/nvme0n1p3
-#mkfs.ext4 /dev/nvme1n1p1
+mkfs.ext4 /dev/nvme1n1p1
 
 # Mounting root partition and home folder
 mount /dev/nvme0n1p3 /mnt
@@ -18,7 +18,7 @@ nano /etc/pacman.conf
 pacman -Syy
 
 # Installing and running reflector
-pacman -S reflector
+pacman -S --noconfirm reflector
 reflector -f 12 -l 12 -n 12 > /etc/pacman.d/mirrorlist
 
 # Downloading base for install
