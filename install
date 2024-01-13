@@ -1,0 +1,69 @@
+#!/bin/bash
+
+# Creating password_hash.txt
+read -s -p "Enter your password: " user_password
+echo
+echo "$user_password" | openssl passwd -6 -stdin > password_hash.txt
+
+# Setting up timezone and clock
+ln -sf /usr/share/zoneinfo/Europe/Stockholm /etc/localtime
+hwclock --systohc
+
+# Language
+touch /etc/locale.conf
+sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+sed -i 's/^#sv_SE.UTF-8 UTF-8/sv_SE.UTF-8 UTF-8/' /etc/locale.gen
+locale-gen
+
+echo "LANG=C.UTF-8" | tee -a /etc/locale.conf >/dev/null
+echo "LC_NUMERIC=sv_SE.UTF-8" | tee -a /etc/locale.conf >/dev/null
+echo "LC_TIME=sv_SE.UTF-8" | tee -a /etc/locale.conf >/dev/null
+echo "LC_MONETARY=sv_SE.UTF-8" | tee -a /etc/locale.conf >/dev/null
+echo "LC_PAPER=sv_SE.UTF-8" | tee -a /etc/locale.conf >/dev/null
+echo "LC_MEASUREMENT=sv_SE.UTF-8" | tee -a /etc/locale.conf >/dev/null
+
+# Setting up keymap and terminal font
+touch /etc/vconsole.conf
+echo "KEYMAP=sv-lat6" | tee -a /etc/vconsole.conf >/dev/null
+echo "FONT=ter-124n" | tee -a /etc/vconsole.conf >/dev/null
+
+# Setting up Hostname and Network
+touch /etc/hostname
+echo "arch-desktop" | tee -a /etc/hostname >/dev/null
+
+echo "127.0.0.1  localhost" | tee -a /etc/hosts >/dev/null
+echo "::  localhost" | tee -a /etc/hosts >/dev/null
+echo "127.0.1.1  arch-desktop" | tee -a /etc/hosts >/dev/null
+
+# Configuring /etc/pacman.conf
+sed -i 's/^#Color/Color/' /etc/pacman.conf
+sed -i 's/^#ParallelDownloads = 5/ParallelDownloads = 10/' /etc/pacman.conf
+nano /etc/pacman.conf
+pacman -Syy >/dev/null
+
+touch /etc/modprobe.d/i915.conf
+echo "options i915 enable_guc=3" | tee -a /etc/modprobe.d/i915.conf >/dev/null
+
+# Installing and Configuring Boot Manager
+pacman -S --noconfirm efibootmgr
+
+bootctl --path=/boot install
+
+touch /boot/loader/entries/arch.conf
+echo "default arch" | tee -a /boot/loader/loader.conf
+echo "title Arch Linux" | tee -a /boot/loader/entries/arch.conf >/dev/null
+echo "linux vmlinuz-linux" | tee -a /boot/loader/entries/arch.conf >/dev/null
+echo "initrd initramfs-linux.img" | tee -a /boot/loader/entries/arch.conf >/dev/null
+echo "options root=$(blkid | grep '/dev/nvme0n1p3' | cut -d' ' -f5 | sed 's/"//g') rw splash lsm=landlock,lockdown,yama,integrity,apparmor,bpf" | tee -a /boot/loader/entries/arch.conf >/dev/null
+
+# Adding users and setting passwords
+useradd -m -G wheel modda
+echo "modda:$(cat password_hash.txt)" | sudo chpasswd -e
+echo "root:$(cat password_hash.txt)" | sudo chpasswd -e
+EDITOR=nano visudo
+
+# Hyprland
+pacman -S --noconfirm hyprland kitty networkmanager firefox thunderbird fuse spotify-launcher flatpak steam wine-staging winetricks wine-mono wine-gecko mesa lib32-mesa vulkan-intel lib32-vulkan-intel intel-media-driver cups samba libreoffice-fresh-sv
+
+systemctl enable NetworkManager.service
+#systemctl enable avahi-daemon.service
