@@ -63,7 +63,7 @@ echo "root:$(cat password_hash.txt)" | sudo chpasswd -e
 EDITOR=nano visudo
 
 # Hyprland
-pacman -S --noconfirm hyprland kitty networkmanager firefox thunderbird fuse spotify-launcher flatpak steam wine-staging winetricks wine-mono wine-gecko mesa lib32-mesa vulkan-intel lib32-vulkan-intel intel-media-driver cups samba libreoffice-fresh-sv
+pacman -S --noconfirm hyprland kitty networkmanager pipewire pipewire-audio pipewire-pulse pipewire-session-manager pipewire-alsa wireplumber firefox thunderbird fuse spotify-launcher flatpak steam wine-staging winetricks wine-mono wine-gecko mesa lib32-mesa vulkan-intel lib32-vulkan-intel intel-media-driver cups samba libreoffice-fresh-sv
 
 systemctl enable NetworkManager.service
 #systemctl enable avahi-daemon.service
