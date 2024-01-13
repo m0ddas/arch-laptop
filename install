@@ -24,7 +24,7 @@ echo "LC_MEASUREMENT=sv_SE.UTF-8" | tee -a /etc/locale.conf >/dev/null
 
 # Setting up keymap and terminal font
 touch /etc/vconsole.conf
-echo "KEYMAP=sv-lat6" | tee -a /etc/vconsole.conf >/dev/null
+echo "KEYMAP=sv-latin1" | tee -a /etc/vconsole.conf >/dev/null
 echo "FONT=ter-124n" | tee -a /etc/vconsole.conf >/dev/null
 
 # Setting up Hostname and Network
@@ -63,7 +63,7 @@ echo "root:$(cat password_hash.txt)" | sudo chpasswd -e
 EDITOR=nano visudo
 
 # Hyprland
-pacman -S --noconfirm hyprland kitty networkmanager pipewire pipewire-audio pipewire-pulse pipewire-session-manager pipewire-alsa wireplumber firefox thunderbird fuse spotify-launcher flatpak steam wine-staging winetricks wine-mono wine-gecko mesa lib32-mesa vulkan-intel lib32-vulkan-intel intel-media-driver cups samba libreoffice-fresh-sv
+pacman -S --noconfirm hyprland kitty networkmanager pipewire pipewire-audio pipewire-pulse pipewire-session-manager pipewire-alsa wireplumber firefox thunderbird fuse spotify-launcher flatpak steam wine-staging winetricks wine-mono wine-gecko mesa lib32-mesa vulkan-intel lib32-vulkan-intel intel-media-driver cups samba sof-firmware libreoffice-fresh-sv
 
 systemctl enable NetworkManager.service
 #systemctl enable avahi-daemon.service
