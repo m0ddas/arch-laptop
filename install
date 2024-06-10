@@ -33,7 +33,7 @@ echo "arch-desktop" | tee -a /etc/hostname >/dev/null
 
 echo "127.0.0.1  localhost" | tee -a /etc/hosts >/dev/null
 echo "::  localhost" | tee -a /etc/hosts >/dev/null
-echo "127.0.1.1  arch-desktop" | tee -a /etc/hosts >/dev/null
+echo "127.0.1.1  linux-laptop" | tee -a /etc/hosts >/dev/null
 
 # Configuring /etc/pacman.conf
 sed -i 's/^#Color/Color/' /etc/pacman.conf
