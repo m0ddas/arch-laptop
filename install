@@ -34,7 +34,7 @@ echo "FONT=ter-124n" | tee -a /etc/vconsole.conf >/dev/null
 
 # Setting up Hostname and Network
 touch /etc/hostname
-echo "arch-desktop" | tee -a /etc/hostname >/dev/null
+echo "linux-laptop" | tee -a /etc/hostname >/dev/null
 
 echo "127.0.0.1  localhost" | tee -a /etc/hosts >/dev/null
 echo "::  localhost" | tee -a /etc/hosts >/dev/null
@@ -66,6 +66,8 @@ useradd -m -G wheel modda
 echo "modda:$(cat password_hash.txt)" | sudo chpasswd -e
 echo "root:$(cat password_hash.txt)" | sudo chpasswd -e
 EDITOR=nano visudo
+
+pacman -S sddm plasma firefox alacritty networkmanager fuse spotify-launcher flatpak mesa lib32-mesa vulkan-intel lib32-vulkan-intel intel-media-driver cups samba sof-firmware
 
 # Hyprland
 # pacman -S --noconfirm hyprland kitty networkmanager pipewire pipewire-audio pipewire-pulse pipewire-session-manager pipewire-alsa wireplumber firefox thunderbird fuse spotify-launcher flatpak steam wine-staging winetricks wine-mono wine-gecko mesa lib32-mesa vulkan-intel lib32-vulkan-intel intel-media-driver cups samba sof-firmware libreoffice-fresh-sv
