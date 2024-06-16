@@ -49,6 +49,11 @@ pacman -S --noconfirm efibootmgr
 
 bootctl --path=/boot install
 
+# systemdboot config
+# sudo umount /boot
+# sudo mount -o uid=0,gid=0,fmask=0077,dmask=0077 /dev/sda1/boot
+# stat /boot
+
 touch /boot/loader/entries/arch.conf
 echo "default arch" | tee -a /boot/loader/loader.conf
 echo "title Arch Linux" | tee -a /boot/loader/entries/arch.conf >/dev/null
